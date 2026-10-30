@@ -1,0 +1,47 @@
+x-lite-environment: &lite-environment
+  RAG_PROFILE: lite
+  RAG_OBJECT_STORE: local
+  RAG_DATA_DIR: /data
+  RAG_ARTIFACTS_DIR: /artifacts
+  RAG_DATABASE_URL: sqlite:////data/enterprise_rag.sqlite3
+
+x-lite-volumes: &lite-volumes
+  - ${RAG_DOCKER_DATA_DIR:-./.local-data}:/data
+  - ${RAG_DOCKER_ARTIFACTS_DIR:-./.local-artifacts}:/artifacts
+
+services:
+  api:
+    profiles: [lite]
+    image: enterprise-rag-lite:local
+    build: .
+    environment:
+      <<: *lite-environment
+      RAG_API_TOKEN: ${RAG_API_TOKEN:-}
+      RAG_DEMO_TENANT_ID: ${RAG_DEMO_TENANT_ID:-}
+      RAG_DEMO_USER_ID: ${RAG_DEMO_USER_ID:-}
+      RAG_LLM_PROVIDER: ${RAG_LLM_PROVIDER:-none}
+      RAG_LLM_MODEL: ${RAG_LLM_MODEL:-qwen2.5:3b}
+      RAG_LLM_BASE_URL: ${RAG_LLM_BASE_URL:-http://host.docker.internal:11434}
+      RAG_LLM_TIMEOUT_SECONDS: ${RAG_LLM_TIMEOUT_SECONDS:-90}
+      RAG_VISUAL_TIMEOUT_SECONDS: ${RAG_VISUAL_TIMEOUT_SECONDS:-180}
+    volumes: *lite-volumes
+    ports:
+      - "127.0.0.1:${RAG_API_PORT:-8000}:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health/ready', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  worker:
+    profiles: [lite]
+    image: enterprise-rag-lite:local
+    depends_on:
+      api:
+        condition: service_healthy
+    command: ["enterprise-rag", "worker-loop", "--worker-id", "compose-lite-worker", "--interval-seconds", "1"]
+    environment: *lite-environment
+    volumes: *lite-volumes
+    init: true
+    stop_grace_period: 120s

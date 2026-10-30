@@ -1,0 +1,60 @@
+%PDF-1.3
+%‚„œ”
+1 0 obj
+<<
+/Type /Catalog
+/Pages 2 0 R
+>>
+endobj
+2 0 obj
+<<
+/Type /Pages
+/Count 1
+/Kids [ 3 0 R ]
+>>
+endobj
+3 0 obj
+<<
+/Type /Page
+/Resources <<
+/Font <<
+/F1 4 0 R
+>>
+>>
+/MediaBox [ 0.0 0.0 612 460 ]
+/Parent 2 0 R
+/Contents 5 0 R
+>>
+endobj
+4 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica
+>>
+endobj
+5 0 obj
+<<
+/Length 1067
+>>
+stream
+BT /F1 22 Tf 56 400 Td (Request register) Tj ET BT /F1 11 Tf 56 378 Td (Service desk | synthetic example) Tj ET 56 330 m 556 330 l S 56 294 m 556 294 l S 56 258 m 556 258 l S 56 222 m 556 222 l S 56 186 m 556 186 l S 56 186 m 56 330 l S 236 186 m 236 330 l S 316 186 m 316 330 l S 436 186 m 436 330 l S 556 186 m 556 330 l S BT /F1 11 Tf 66 308 Td (Request) Tj ET BT /F1 11 Tf 246 308 Td (Priority) Tj ET BT /F1 11 Tf 326 308 Td (Owner) Tj ET BT /F1 11 Tf 446 308 Td (Status) Tj ET BT /F1 11 Tf 66 272 Td (VPN access) Tj ET BT /F1 11 Tf 246 272 Td (High) Tj ET BT /F1 11 Tf 326 272 Td (IT Support) Tj ET BT /F1 11 Tf 446 272 Td (Approved) Tj ET BT /F1 11 Tf 66 236 Td (Laptop setup) Tj ET BT /F1 11 Tf 246 236 Td (Normal) Tj ET BT /F1 11 Tf 326 236 Td (IT Support) Tj ET BT /F1 11 Tf 446 236 Td (In progress) Tj ET BT /F1 11 Tf 66 200 Td (Project folder) Tj ET BT /F1 11 Tf 246 200 Td (Normal) Tj ET BT /F1 11 Tf 326 200 Td (Data team) Tj ET BT /F1 11 Tf 446 200 Td (Pending) Tj ET BT /F1 10 Tf 56 65 Td (Example data only. No personal or customer information.) Tj ET
+endstream
+endobj
+xref
+0 7
+0000000006 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000123 00000 n 
+0000000255 00000 n 
+0000000325 00000 n 
+0000000000 00001 f 
+trailer
+<<
+/Size 7
+/Root 1 0 R
+>>
+startxref
+1444
+%%EOF

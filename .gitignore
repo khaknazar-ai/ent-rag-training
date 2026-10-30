@@ -1,0 +1,55 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+venv/
+
+# Packaging output
+build/
+dist/
+*.egg-info/
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+
+# Local data and generated artifacts
+data/
+artifacts/
+.local-data/
+.local-artifacts/
+evals/reports/
+benchmarks/results/
+*.sqlite3
+*.db
+
+# Caches and model assets
+.cache/
+/models/
+hf-cache/
+torch-cache/
+
+# Docker/local service data
+docker-volumes/
+minio-data/
+qdrant-storage/
+opensearch-data/
+
+# Tooling
+.idea/
+.vscode/
+Thumbs.db
+
+# Signed PSF Python 3.12 test environment (old .venv retained)
+.venv-py312/
+
+# Local working files
+.*-work/
+docs/planning/
+
+# Machine-specific demo paths (copy examples/demo-config.example.json here)
+demo.local.json

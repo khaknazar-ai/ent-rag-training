@@ -1,0 +1,4 @@
+Local Docker-lite smoke document.
+
+The safecanoe protocol requires a signed approval before data export.
+This sentence is synthetic test content, not an enterprise policy.

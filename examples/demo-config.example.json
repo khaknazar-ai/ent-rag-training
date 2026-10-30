@@ -1,0 +1,9 @@
+{
+  "root": ".",
+  "port": 8880,
+  "table_engine": "pdfplumber-spans",
+  "renderer": "local-runtime/pdftoppm.exe",
+  "raster_config": "local-runtime/raster.json",
+  "ocr_tesseract": "local-runtime/tesseract.exe",
+  "ocr_data": "local-runtime/tessdata"
+}

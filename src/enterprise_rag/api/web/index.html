@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Documents</title>
+  <link rel="stylesheet" href="/ui/app.css">
+  <script type="module" src="/ui/app.js"></script>
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="/">Documents<span class="brand-dot" aria-hidden="true">.</span></a><button id="disconnect" class="quiet" hidden>Disconnect</button></header>
+  <main>
+    <section id="connection" class="connection" aria-labelledby="welcome">
+      <p class="eyebrow">YOUR WORKSPACE</p>
+      <h1 id="welcome">A place for your documents.</h1>
+      <p class="muted">Find a passage. Ask a question. Check the source.</p>
+      <form id="connect-form">
+        <label for="token">Access token</label>
+        <div class="connect-row"><input id="token" type="password" required maxlength="4096" autocomplete="off" spellcheck="false"><button type="submit">Connect</button></div>
+        <p class="hint">Kept in this tab until you disconnect or reload.</p>
+      </form>
+    </section>
+    <div id="workspace" class="workspace" hidden>
+      <aside aria-labelledby="documents-title">
+        <div class="section-heading"><h2 id="documents-title">Your documents</h2><button id="refresh" class="quiet" aria-label="Refresh document list">Refresh</button></div>
+        <label class="upload" for="file">+ Add a document<input id="file" class="file-input" type="file" accept=".txt,.md,.pdf" aria-label="Add a TXT, Markdown or native PDF document"></label>
+        <p id="upload-status" class="hint" role="status"></p>
+        <ul id="documents" class="document-list"></ul>
+        <button id="more" class="quiet" hidden>Load more</button>
+        <details id="history-section" class="history">
+          <summary>Recent questions</summary>
+          <ol id="history-items" class="history-list"></ol>
+          <p id="history-empty" class="hint" hidden>No saved questions yet.</p>
+          <button id="more-history" class="quiet" hidden>Load more</button>
+        </details>
+      </aside>
+      <section class="question-panel" aria-labelledby="ask-title">
+        <p class="eyebrow">FROM YOUR SOURCES</p>
+        <h1 id="ask-title">What would you like to find?</h1>
+        <form id="ask-form">
+          <label class="visually-hidden" for="question">Your question</label>
+          <textarea id="question" rows="3" required maxlength="500" placeholder="Ask a question about your documents…"></textarea>
+          <div class="question-actions"><span id="mode-caption" class="hint">Find passages · no model</span><button id="ask" type="submit">Find</button></div>
+        </form>
+        <div id="answer-area" aria-live="polite"></div>
+        <details class="options"><summary>Options</summary><label for="mode">How to respond</label><select id="mode">
+          <option value="sources">Find passages · no model</option>
+          <option value="parent">Answer with sources · local model</option>
+          <option value="lexical">Extractive answer · configured model</option>
+          <option value="visual">Page answer · local</option>
+          <option value="semantic-sources">Semantic passages · configured index</option>
+          <option value="semantic">Semantic answer · configured index and model</option>
+        </select><div id="source-query-field" hidden><label for="source-query">Find source (optional)</label><input id="source-query" form="ask-form" maxlength="200" placeholder="Words from the page"><p class="hint">Use this when the question has no matching words on the page.</p></div><p class="hint">Uses the selected service. A missing provider is reported explicitly.</p></details>
+      </section>
+    </div>
+    <p id="notice" class="notice" role="status" aria-live="polite"></p>
+  </main>
+  <dialog id="source-dialog" aria-labelledby="source-title">
+    <div class="section-heading"><h2 id="source-title">Source</h2><div class="dialog-actions"><button id="source-view" class="quiet" hidden>Selected area</button><button id="close-source" class="quiet">Close</button></div></div>
+    <p id="source-meta" class="hint"></p>
+    <div id="source-table" hidden><p class="hint">Table row</p><div id="source-table-content"></div></div>
+    <pre id="source-text"></pre>
+  </dialog>
+  <dialog id="summary-dialog" aria-labelledby="summary-title">
+    <div class="section-heading"><h2 id="summary-title">Document highlights</h2><button id="close-summary" class="quiet">Close</button></div>
+    <form id="summary-form">
+      <label for="summary-version">Version</label><select id="summary-version" required></select>
+      <label for="summary-mode">How to summarize</label><select id="summary-mode"><option value="extractive">Highlights · no model</option><option value="model">Model summary · configured local model</option></select>
+      <p class="hint">Current version only, up to 8,000 characters and 32 parts. Highlights quote source text. Model summaries need a verified model and token budget; citations identify sources but do not prove every claim.</p>
+      <button id="create-summary" type="submit">Create highlights</button>
+    </form>
+  </dialog>
+</body>
+</html>

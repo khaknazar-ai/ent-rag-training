@@ -1,0 +1,78 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "enterprise-rag-platform"
+version = "0.1.0"
+description = "Local document ingestion, authorized lexical retrieval and extractive answers"
+requires-python = ">=3.11,<3.13"
+dependencies = []
+
+[project.optional-dependencies]
+qdrant = ["httpx>=0.27,<1"]
+api = [
+    "fastapi>=0.115,<1",
+    "uvicorn>=0.30,<1",
+]
+pdf = [
+    "pypdf>=5,<7",
+]
+pdf-tables = [
+    "pdfplumber>=0.11.10,<0.12",
+]
+visual = [
+    "Pillow>=11,<14",
+]
+docling = [
+    "docling-core==2.104.0",
+]
+raster-geometry = [
+    "opencv-python-headless==4.13.0.92",
+    "numpy>=2,<3",
+]
+local-cpu = [
+    "numpy==2.5.4",
+    "onnxruntime==1.31.0",
+    "onnx==1.23.2",
+    "tokenizers==0.22.2",
+    "huggingface-hub==1.33.0",
+]
+dev = [
+    "fastapi>=0.115,<1",
+    "httpx>=0.27,<1",
+    "pypdf>=5,<7",
+    "pytest>=8,<10",
+    "ruff>=0.16,<0.17",
+    "mypy>=1.15,<2",
+    "Pillow>=11,<14",
+    "uvicorn>=0.30,<1",
+]
+
+[project.scripts]
+enterprise-rag = "enterprise_rag.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"enterprise_rag.api" = ["web/*.html", "web/*.css", "web/*.js"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src", "tests"]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 88
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "UP", "B", "RUF"]
+
+[tool.mypy]
+python_version = "3.11"
+files = ["src"]
+check_untyped_defs = true
+
